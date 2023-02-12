@@ -5,25 +5,25 @@ function App() {
 
   const [result, setResult] = useState();
   const [isLoading, setIsloading] = useState(true);
+  const [error, setError] = useState(false);
+
 
   const baseUrl = "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
   useEffect(() => {
-    const fetchData = async () => {
-
-
-      try {
-        const response = await fetch(baseUrl)
-        const data = await response.json();
-        // console.log(data)
-        setResult(data)
-        setIsloading(false)
-      } catch (error) {
-        console.log(error)
-      }
   
-    }
-    fetchData()
+    fetch(baseUrl)
+  .then(response => response.json())
+  .then(response => setResult(response))
+  .catch(err => setError(err));
+  setIsloading(false)
   }, []);
+  // console.log(result)
+  if(isLoading) {
+    return<>LOAIDNG</>
+  }
+  if(error ){
+    return<>ERROR</>
+  }
   return (
     <div className="App">
       <Dashboard data={result} />

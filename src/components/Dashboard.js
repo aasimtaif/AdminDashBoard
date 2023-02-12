@@ -1,15 +1,16 @@
 import React from 'react'
 import '../App.css';
 
-function Dashboard({data}) {
+function Dashboard({ data }) {
     console.log(data)
+
     return (
         <div className='table'>
-            <input/>
+            <input />
             <table>
                 <thead>
                     <tr>
-                        <th><input type = "checkbox"/></th>
+                        <th><input type="checkbox" /></th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -17,16 +18,21 @@ function Dashboard({data}) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th><input type = "checkbox"/></th>
-                        <td>text1.1</td>
-                        <td>text1.2</td>
-                        <td>text1.3</td>
-                        <td>text1.4</td>
+                    {data?.map((info) => {
+                        return (<tr>
+                            <td><input type="checkbox"/></td>
+                            <td>{info.name}</td>
+                            <td>{info.email}</td>
+                            <td>{info.role}</td>
+                            <td></td>
 
-                    </tr>
+                        </tr>)
+                    })}
                 </tbody>
             </table>
+            {/* {data?.map((info) => {
+               return(<>{info.name}</>)
+            })} */}
         </div>
     )
 }
