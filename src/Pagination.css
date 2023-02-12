@@ -10,13 +10,14 @@ margin: 0 1rem  1rem;
 
 background-color: white;
 border: none;
-width: 5%;
+width: 2%;
 }
 
 .pagination button.active {
     font-weight: 900;
-    border-radius: 10%;
+
     border: none;
-    border-bottom: 1px solid black;
+
+    border-bottom: 1.6px solid black;
     color: #101010;
 }

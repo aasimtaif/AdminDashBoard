@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Dashboard from './Dashboard';
 import "../Pagination.css";
-function Pagination({ data }) {
+function Pagination({ data ,setData}) {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
     let pages = [];
@@ -14,10 +14,10 @@ function Pagination({ data }) {
     const firstPostIndex = lastPostIndex - postsPerPage
     console.log(firstPostIndex, lastPostIndex)
     const currentPost = data?.slice(firstPostIndex, lastPostIndex)
-    console.log(currentPost)
+  
     return (
-        <div>Pagination
-            <Dashboard data={currentPost} />
+        <div>
+            <Dashboard data={currentPost} completeData = {data}setData = {setData} />
             <div className='pagination'>
                  {pages.map((page, index) => {
                     return (

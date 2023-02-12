@@ -3,7 +3,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 function App() {
 
-  const [result, setResult] = useState();
+  const [data, setData] = useState();
   const [isLoading, setIsloading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -13,11 +13,11 @@ function App() {
   
     fetch(baseUrl)
   .then(response => response.json())
-  .then(response => setResult(response))
+  .then(response => setData(response))
   .catch(err => setError(err));
   setIsloading(false)
   }, []);
-  // console.log(result)
+  // console.log(data)
   if(isLoading) {
     return<>LOAIDNG</>
   }
@@ -27,9 +27,10 @@ function App() {
   return (
     <div className="App">
 
-      <Pagination data={result} />
+    <Pagination data={data} setData = {setData} />
     </div>
   );
 }
 
 export default App;
+
