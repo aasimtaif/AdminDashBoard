@@ -1,4 +1,4 @@
-import { Dashboard } from './components';
+import { Pagination} from './components';
 import './App.css';
 import { useState, useEffect } from 'react';
 function App() {
@@ -26,7 +26,8 @@ function App() {
   }
   return (
     <div className="App">
-      <Dashboard data={result} />
+
+      <Pagination data={result} />
     </div>
   );
 }
