@@ -1,3 +1,4 @@
+import { omit } from "lodash";
 const SET_DATA = "SET_DATA";
 const REMOVE_DATA = "REMOVE_DATA";
 
@@ -30,6 +31,17 @@ switch (action.type) {
             info
             }
         }
+        
+    }
+    case  REMOVE_DATA:{
+        const {id} = action.payload
+return{
+...state,
+data:{
+    ...state.data,
+    info:state.data.info.filter((item, index) => item.id !== id)
+}
+}
     }
 
     default:
