@@ -2,7 +2,14 @@
 import React, { useState } from 'react'
 import Dashboard from './Dashboard';
 import "../Pagination.css";
-function Pagination({ data ,setData}) {
+import { useSelector} from 'react-redux';
+
+
+
+
+function Pagination() {
+
+    const data = useSelector(state =>state.data.info)
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
     let pages = [];
@@ -17,7 +24,7 @@ function Pagination({ data ,setData}) {
   
     return (
         <div>
-            <Dashboard data={currentPost} completeData = {data}setData = {setData} />
+            <Dashboard data={currentPost}  />
             <div className='pagination'>
                  {pages.map((page, index) => {
                     return (
