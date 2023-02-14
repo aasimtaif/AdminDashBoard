@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 
 
 
+
+
 function Pagination() {
     const data = useSelector(state => state.data.info)
 console.log(data)
@@ -27,7 +29,8 @@ console.log(data)
     const currentPost = data?.slice(firstPostIndex, lastPostIndex)
 
     return (
-        <div>
+        <div className='table'>
+            <input placeholder={"Search by  name , id , email..."} />
             <Dashboard data={currentPost} />
             <div className='pagination'>
                 {pages.map((page, index) => {

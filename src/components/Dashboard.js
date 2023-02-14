@@ -1,38 +1,38 @@
-import React from 'react'
+import React ,{ useState }from 'react'
 import { BsFillTrashFill, BsPencilSquare } from 'react-icons/bs';
 import '../App.css';
-import { setInfo ,removeData} from '../store/Data'
-import { useDispatch ,useSelector} from 'react-redux';
+import { removeData} from '../store/Data'
+import { useDispatch } from 'react-redux';
 
 function Dashboard({ data }) {
     const dispatch = useDispatch()
-    const details = useSelector(state => state.data.info)
-
+    
+const [selected, setSelected] = useState();
     console.log(data)
-    console.log(details)
+    
 
 
-    const handleDelete = (info,index) => {
-        // details.splice(details.findIndex(a => a.id === info.id) , 1)
-    console.log(details)
+    const handleDelete = (info) => {
+
     console.log(info)
 
         dispatch(removeData(info))
     }
 
 
-    const handleEdit = () => {
-
+    const handleSelect = (event,info) => {
+        if(event.target.checked){
+            console.log(event,info)
+        }
     }
 
 
     return (
-        <div className='table'>
-            <input />
+        <div >
             <table>
                 <thead>
                     <tr>
-                        <th><input type="checkbox" /></th>
+                        <th></th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -42,14 +42,12 @@ function Dashboard({ data }) {
                 <tbody>
                     {data?.map((info,index) => {
                         return (<tr key = {index}>
-                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" onClick={ (e) =>(handleSelect(e,info))}/></td>
                             <td>{info.name}</td>
                             <td>{info.email}</td>
                             <td>{info.role}</td>
                             <td>
-                                <button onClick={() => {
-                                    handleEdit(info,index)
-                                }}><BsPencilSquare /></button>
+                                <button ><BsPencilSquare /></button>
                                 <button onClick={() => {
                                     handleDelete(info)
 
@@ -64,6 +62,7 @@ function Dashboard({ data }) {
             {/* {data?.map((info) => {
                return(<>{info.name}</>)
             })} */}
+             <button className='delete_selected'>Delete Selected</button>
         </div>
     )
 }
