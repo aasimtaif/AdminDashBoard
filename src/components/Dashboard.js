@@ -1,32 +1,41 @@
-import React ,{ useState }from 'react'
+import React, { useState } from 'react'
 import { BsFillTrashFill, BsPencilSquare } from 'react-icons/bs';
 import '../App.css';
-import { removeData} from '../store/Data'
+import { removeData } from '../store/Data'
 import { useDispatch } from 'react-redux';
 
 function Dashboard({ data }) {
     const dispatch = useDispatch()
-    
-const [selected, setSelected] = useState();
+
+    const [selected, setSelected] = useState([]);
     console.log(data)
-    
+
 
 
     const handleDelete = (info) => {
 
-    console.log(info)
+        console.log(info)
 
         dispatch(removeData(info))
     }
 
 
-    const handleSelect = (event,info) => {
-        if(event.target.checked){
-            console.log(event,info)
+    const handleSelect = (event, info) => {
+        if (event.target.checked) {
+
+            setSelected([...selected, info])
         }
+
     }
 
+    const handleMultipleDelete = (event) => {
+        selected.map((element) => {
+            dispatch(removeData(element))
+        })
+        setSelected([])
+    }
 
+    console.log(selected)
     return (
         <div >
             <table>
@@ -40,9 +49,9 @@ const [selected, setSelected] = useState();
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.map((info,index) => {
-                        return (<tr key = {index}>
-                            <td><input type="checkbox" onClick={ (e) =>(handleSelect(e,info))}/></td>
+                    {data?.map((info, index) => {
+                        return (<tr key={index}>
+                            <td><input type="checkbox" onClick={(e) => (handleSelect(e, info))} /></td>
                             <td>{info.name}</td>
                             <td>{info.email}</td>
                             <td>{info.role}</td>
@@ -62,7 +71,7 @@ const [selected, setSelected] = useState();
             {/* {data?.map((info) => {
                return(<>{info.name}</>)
             })} */}
-             <button className='delete_selected'>Delete Selected</button>
+            <button className='delete_selected' onClick={handleMultipleDelete}>Delete Selected</button>
         </div>
     )
 }
