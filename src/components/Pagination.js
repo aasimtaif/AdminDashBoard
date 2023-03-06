@@ -1,5 +1,5 @@
 
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Dashboard from './Dashboard';
 import "../Pagination.css";
 import { useSelector } from 'react-redux';
@@ -14,15 +14,17 @@ function Pagination() {
     const [data, setData] = useState();
 
     const info = useSelector(state => state.data.info)
-    
+
     const [input, setInput] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
     useEffect(() => {
         setData(info)
-        let filteredData = info?.filter(data => data?.name.includes(input))
+        let filteredData = info?.filter(data => data?.name.toLowerCase().includes(input)
+            || data?.email.toLowerCase().includes(input)
+            || data?.role.toLowerCase().includes(input))
         setData(filteredData)
-    }, [input]);
+    }, [input, info]);
 
 
     console.log(data?.length)
