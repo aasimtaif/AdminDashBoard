@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 problem statement https://www.geektrust.com/coding/challenges .
 
-link:- admin-ui-096104.netlify.app.
+link:-https://admin-ui-096104.netlify.app.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
