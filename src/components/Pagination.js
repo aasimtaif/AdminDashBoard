@@ -42,7 +42,7 @@ function Pagination() {
     const firstPostIndex = lastPostIndex - postsPerPage
     // console.log(firstPostIndex, lastPostIndex)
     const currentPost = data?.slice(firstPostIndex, lastPostIndex)
-    console.log(input)
+    // console.log(input)
     return (
         <div className='table'>
             <input placeholder={"Search by  name , id , email..."} onChange={(e) => setInput(e.target.value.toLowerCase())} />

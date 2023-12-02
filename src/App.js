@@ -9,7 +9,7 @@ function App() {
   const [isLoading, setIsloading] = useState(true);
   const [error, setError] = useState(false);
  const details = useSelector(state =>state.data.info)
- console.log(details)
+//  console.log(details)
 
   const dispatch = useDispatch();
 
