@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BsFillTrashFill, BsPencilSquare } from 'react-icons/bs';
 import '../App.css';
-import { removeData } from '../store/Data'
+import { removeData, editInfoDetails } from '../store/Data'
 import { useDispatch } from 'react-redux';
 import { MdDownloadDone } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
@@ -30,9 +30,16 @@ function Dashboard({ data }) {
         }
 
     }
-    const handleEdit = (id) => {
-        setOpenEdit(id)
+    const handleEditInput = (event) => {
+        setEditInput({ ...editInput, [event.target.name]: event.target.value })
     }
+    const editInfo = (event) => {
+        dispatch(editInfoDetails(editInput))
+        setOpenEdit(null)
+        setEditInput(null)
+
+    }
+
     console.log(openEdit)
     const handleMultipleDelete = (event) => {
         selected.map((element) => {
@@ -60,12 +67,12 @@ function Dashboard({ data }) {
                             <td><input type="checkbox" onClick={(e) => (handleSelect(e, info))} /></td>
                             {openEdit == info.id ?
                                 <>
-                                    <td><input value={editInput.name} /></td>
-                                    <td><input value={editInput.email} /></td>
-                                    <td><input value={editInput.role} /></td>
+                                    <td><input name='name' value={editInput.name} onChange={handleEditInput} /></td>
+                                    <td><input name='email' value={editInput.email} onChange={handleEditInput} /></td>
+                                    <td><input name='role' value={editInput.role} onChange={handleEditInput} /></td>
                                     <td>
                                         <button
-                                            onClick={handleEdit}
+                                            onClick={editInfo}
                                         >
                                             <MdDownloadDone size="20px" color='blue' />
                                         </button>
